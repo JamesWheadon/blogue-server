@@ -33,7 +33,13 @@ class Post {
     }
 
     static async createPost(data) {
-        data.id = postsData.length+1
+        let maxId = 0;
+        Post.all().forEach( post => {
+            if (post.id > maxId)  {
+                maxId = post.id
+            }
+        })
+        data.id = maxId + 1;
         postsData.push(data);
         await fs.writeFile("../posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
@@ -77,6 +83,37 @@ class Post {
          })
         
         return Post.all
+    }
+
+    static sortPosts(array, comparison) {
+        // array is the array to sort
+        // comparison = 0 for ascending ids, 1 for descending ids, 2 for descending most comments/reactions total
+        if (array.length > 1){
+            let previous = []
+            let following = []
+            let pivot = array[array.length - 1];
+            for(let i = 0; i < array.length - 1; i++) {
+                post = array[i];
+                if (comparison === 0 && post.id < pivot.id) {
+                    previous.push(post)
+                } else if (comparison === 0 && post.id > pivot.id) {
+                    previous.push(post)
+                } else if (comparison === 0) {
+                    if (post.comments.length + Object.keys(post).reduce((sum,key)=>sum+post[key]) < pivot.comments.length + Object.keys(pivot).reduce((sum,key)=>sum+pivot[key])) {
+                        previous.push(post)
+                    }
+                    else {
+                        following.push(post)
+                    }
+                } else {
+                    following.push(post)
+                }
+            }
+            return sortPosts(previous, comparison).concat(sortPosts(following, comparison))
+        }
+        else {
+            return array;
+        }
     }
 
 }
