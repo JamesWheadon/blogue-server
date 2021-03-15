@@ -1,2 +1,1 @@
-[{"id":1,"name":"asda","comments":["another comment!","wefwe!"],"reactions":{"emoji1":2,"emoji2":0,"emoji3":0}},
-    {"id":2,"name":"arghhhh","comments":["another comment!","wefwe!"],"reactions":{"emoji1":2,"emoji2":0,"emoji3":0}}]
+[{"id":1,"title":"asda","comments":["another comment!","wefwe!"],"reactions":{"emoji1":2,"emoji2":0,"emoji3":0}},{"id":2,"title":"arghhhh","comments":["another comment!","wefwe!","this is a new comment here"],"reactions":{"emoji1":5,"emoji2":0,"emoji3":0}},{"id":3,"title":"asda"},{"id":4,"title":"asda"},{"id":5,"title":"asda"},{"title":"asdasdasda","id":6}]
