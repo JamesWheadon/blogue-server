@@ -42,7 +42,7 @@ class Post {
         })
         data.id = maxId + 1;
         postsData.push(data);
-        fs.writeFile("../posts.json", JSON.stringify(postsData), err => {
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => {
             // Checking for errors 
             if (err) throw err;  
 
