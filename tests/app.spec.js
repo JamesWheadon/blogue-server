@@ -25,6 +25,24 @@ describe('API server', () => {
         .expect(200, done);
     })
 
+    it('it responds to get /?sort=0 with status 200', done => {
+        request(api)
+        .get('/?sort=0')
+        .expect(200, done);
+    })
+
+    it('it responds to get /?sort=1 with status 200', done => {
+        request(api)
+        .get('/?sort=1')
+        .expect(200, done);
+    })
+
+    it('it responds to get /?sort=2 with status 200', done => {
+        request(api)
+        .get('/?sort=2')
+        .expect(200, done);
+    })
+
     it('it responds to post / with status 201', done => {
         request(api)
         .post('/')
