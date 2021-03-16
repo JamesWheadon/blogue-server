@@ -8,8 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req,res) => {
-    Post.createPost(req.body)
-    res.status(201).send("post added")
+    if(req.body) res.status(201).send(Post.createPost(req.body));
     
 })
 

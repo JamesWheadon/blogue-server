@@ -48,6 +48,7 @@ class Post {
 
             console.log("Done adding comment"); // Success 
          })
+         return postsData;
     }
 
     static  addComment(id, comment) {
@@ -61,17 +62,6 @@ class Post {
             console.log("Done adding comment"); // Success 
          })
     }
-
-    // static createPost(data) {
-    //     data.id = postsData.length+1
-    //     postsData.push(data);
-    //     fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
-    //         // Checking for errors 
-    //         if (err) throw err;  
-
-    //         console.log("Done writing"); // Success 
-    //      })
-    // }
 
     static addEmoji(id, e) {
         const post = this.findByID(id);
