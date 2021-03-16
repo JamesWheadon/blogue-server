@@ -2,12 +2,13 @@ const postsData = require('../posts.json');
 const fs = require("fs");
 
 
-
-
 class Post {
-    constructor({id, title, comments=[], reactions={} }) {
+    constructor({id, subject, journalInput, gif, date,  comments=[], reactions={"emoji1":0,"emoji2":0,"emoji3":0} }) {
         this.id = id,
-        this.title = title,
+        this.subject = subject,
+        this.journalInput =journalInput,
+        this.gif = gif,
+        this.date = date,
         this.comments = comments,
         this.reactions = reactions
     }
