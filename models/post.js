@@ -3,6 +3,7 @@ const fs = require("fs");
 
 
 
+
 class Post {
     constructor({id, title, comments=[], reactions={} }) {
         this.id = id,
@@ -18,8 +19,7 @@ class Post {
 
     static findByID(id) {
         try {
-            const Data = postsData.find(post => post.id === id);
-            const post = new Post(Data);
+            const post = postsData.find(post => post.id === id)
             return post;
         } catch (error) {
             throw new Error(`Error: ${error}`)
@@ -32,26 +32,26 @@ class Post {
         return arr
     }
 
-    static async createPost(data) {
-        data.id = postsData.length+1
-        postsData.push(data);
-        await fs.writeFile("../posts.json", JSON.stringify(postsData), err => { 
-            // Checking for errors 
-            if (err) throw err;  
-
-            console.log("Done writing"); // Success 
-         })
-         return Post.all
-    }
-
-    static addComment(id, comment) {
+    static  addComment(id, comment) {
         const post = this.findByID(id);
         post.comments.push(comment)
-        fs.writeFile("../posts.json", JSON.stringify(postsData), err => { 
+        console.log(postsData)
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
 
             console.log("Done adding comment"); // Success 
+         })
+    }
+
+    static createPost(data) {
+        data.id = postsData.length+1
+        postsData.push(data);
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
+            // Checking for errors 
+            if (err) throw err;  
+
+            console.log("Done writing"); // Success 
          })
     }
 
@@ -59,7 +59,7 @@ class Post {
         const post = this.findByID(id);
         const emoji = e;
         post.reactions[emoji]++
-        fs.writeFile("../posts.json", JSON.stringify(postsData), err => { 
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
 
@@ -67,22 +67,20 @@ class Post {
          })
     }
 
-    static async deletePost(id) {
+    static deletePost(id) {
         const newPostsData = postsData.filter(post => !(post.id === id))
-        await fs.writeFile("../posts.json", JSON.stringify(newPostsData), err => { 
+        console.log(newPostsData)
+        fs.writeFile("./posts.json", JSON.stringify(newPostsData), err => { 
             // Checking for errors 
             if (err) throw err;  
-
-            console.log("Done deleting post"); // Success 
-         })
-        
-        return Post.all
+            console.log("Done deleting post66")
+            
+         })  
+         return postsData
     }
+  
 
 }
-
-
-
 
 
 module.exports = Post;
