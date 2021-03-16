@@ -96,10 +96,10 @@ class Post {
                 post = array[i];
                 if (comparison === 0 && post.id < pivot.id) {
                     previous.push(post)
-                } else if (comparison === 0 && post.id > pivot.id) {
+                } else if (comparison === 1 && post.id > pivot.id) {
                     previous.push(post)
-                } else if (comparison === 0) {
-                    if (post.comments.length + Object.keys(post).reduce((sum,key)=>sum+post[key]) < pivot.comments.length + Object.keys(pivot).reduce((sum,key)=>sum+pivot[key])) {
+                } else if (comparison === 2) {
+                    if (post.comments.length + Object.values(post.reactions).reduce((a, b) => a + b, 0) > pivot.comments.length + Object.values(pivot.reactions).reduce((a, b) => a + b, 0)) {
                         previous.push(post)
                     }
                     else {
@@ -109,7 +109,7 @@ class Post {
                     following.push(post)
                 }
             }
-            return sortPosts(previous, comparison).concat(sortPosts(following, comparison))
+            return sortPosts(previous, comparison).concat([pivot]).concat(sortPosts(following, comparison))
         }
         else {
             return array;
