@@ -68,18 +68,14 @@ class Post {
     }
 
     static deletePost(id) {
-        const newPostsData = postsData.filter(post => !(post.id === id))
-        console.log(newPostsData)
-        fs.writeFile("./posts.json", JSON.stringify(newPostsData), err => { 
+        let index = (postsData.findIndex( post => post.id === id))
+        postsData.splice(index,1)
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
-            console.log("Done deleting post66")
-            
+            console.log("Done deleting post")
          })  
-         return postsData
     }
-  
-
 }
 
 
