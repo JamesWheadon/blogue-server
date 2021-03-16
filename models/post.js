@@ -35,7 +35,7 @@ class Post {
 
     static createPost(data) {
         let maxId = 0;
-        Post.all().forEach( post => {
+        Post.all.forEach( post => {
             if (post.id > maxId)  {
                 maxId = post.id
             }
@@ -62,16 +62,16 @@ class Post {
          })
     }
 
-    static createPost(data) {
-        data.id = postsData.length+1
-        postsData.push(data);
-        fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
-            // Checking for errors 
-            if (err) throw err;  
+    // static createPost(data) {
+    //     data.id = postsData.length+1
+    //     postsData.push(data);
+    //     fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
+    //         // Checking for errors 
+    //         if (err) throw err;  
 
-            console.log("Done writing"); // Success 
-         })
-    }
+    //         console.log("Done writing"); // Success 
+    //      })
+    // }
 
     static addEmoji(id, e) {
         const post = this.findByID(id);
