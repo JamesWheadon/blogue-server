@@ -17,7 +17,7 @@ router.patch('/:id', (req,res) => {
     const id = parseInt(req.params.id)
     const comment = req.body.comment
     Post.addComment(id, comment)
-    res.status(201).send("updated!")
+    res.status(201).send(Post.findByID(id))
 })
 
 router.patch('/:id/:emoji', (req,res) => {
