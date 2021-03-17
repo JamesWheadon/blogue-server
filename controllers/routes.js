@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req,res) => {
     Post.createPost(req.body)
-    res.status(201).send("post added")
+    res.status(201).send(Post.all[Post.all.length - 1])
     
 })
 
