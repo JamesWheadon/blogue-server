@@ -1,1 +1,1 @@
-[{"subject":"test","journalInput":"test","gif":"","date":"17/3/2021, 11:29","id":1,"comments":[],"reactions":{"heart":2,"cry":9,"laugh":1}}]
+[{"subject":"test","journalInput":"test","gif":"","date":"17/3/2021, 11:29","id":1,"comments":["test","comment","add a comment"],"reactions":{"heart":2,"cry":9,"laugh":1}},{"subject":"test","journalInput":"test 2","gif":"","date":"17/3/2021, 11:42","id":2,"comments":[],"reactions":{"heart":1,"cry":2,"laugh":2}}]
