@@ -93,7 +93,7 @@ class Post {
             let following = []
             let pivot = array[array.length - 1];
             for(let i = 0; i < array.length - 1; i++) {
-                post = array[i];
+                let post = array[i];
                 if (comparison === 0 && post.id < pivot.id) {
                     previous.push(post)
                 } else if (comparison === 1 && post.id > pivot.id) {
@@ -109,7 +109,7 @@ class Post {
                     following.push(post)
                 }
             }
-            return sortPosts(previous, comparison).concat([pivot]).concat(sortPosts(following, comparison))
+            return this.sortPosts(previous, comparison).concat([pivot]).concat(this.sortPosts(following, comparison))
         }
         else {
             return array;
