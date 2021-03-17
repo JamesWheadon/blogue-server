@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/search', (req, res) => {
-    if(req.query.search) res.send(Post.searchPosts(req.query.search)); 
+    if(req.query.search) res.status(200).send(Post.searchPosts(req.query.search)); 
 });
 
 router.post('/', (req,res) => {
