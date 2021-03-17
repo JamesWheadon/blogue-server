@@ -3,7 +3,9 @@ const router = express.Router();
 const Post = require('../models/post')
 
 router.get('/', (req, res) => {
-    if(req.query.sort) { res.send(Post.sortPost()) }
+    if(req.query.sort) {
+        res.send(Post.sortPosts(Post.all, req.query.sort))
+    }
     res.status(200).send(Post.all);
 });
 
