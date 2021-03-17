@@ -35,19 +35,20 @@ class Post {
 
     static createPost(data) {
         let maxId = 0;
-        Post.all().forEach( post => {
+        Post.all.forEach( post => {
             if (post.id > maxId)  {
                 maxId = post.id
             }
         })
         data.id = maxId + 1;
         postsData.push(data);
-        fs.writeFile("../posts.json", JSON.stringify(postsData), err => {
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => {
             // Checking for errors 
             if (err) throw err;  
 
             console.log("Done adding comment"); // Success 
          })
+         return postsData;
     }
 
     static  addComment(id, comment) {
@@ -59,17 +60,6 @@ class Post {
             if (err) throw err;  
 
             console.log("Done adding comment"); // Success 
-         })
-    }
-
-    static createPost(data) {
-        data.id = postsData.length+1
-        postsData.push(data);
-        fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
-            // Checking for errors 
-            if (err) throw err;  
-
-            console.log("Done writing"); // Success 
          })
     }
 
