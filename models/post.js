@@ -44,18 +44,17 @@ class Post {
         data.comments = []
         data.reactions = {"heart":0,"cry":0,"laugh":0}
         postsData.push(data);
-        fs.writeFile("../posts.json", JSON.stringify(postsData), err => {
+        fs.writeFile("./posts.json", JSON.stringify(postsData), err => {
             // Checking for errors 
             if (err) throw err;  
 
             console.log("Done creating post"); // Success 
-         })
+        })
     }
 
     static  addComment(id, comment) {
         const post = this.findByID(id);
         post.comments.push(comment)
-        console.log(postsData)
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  

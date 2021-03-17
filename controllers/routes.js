@@ -8,9 +8,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req,res) => {
+    console.log(req.body)
     Post.createPost(req.body)
     res.status(201).send(Post.all[Post.all.length - 1])
-    
 })
 
 router.patch('/:id', (req,res) => {
