@@ -3,7 +3,7 @@ const fs = require("fs");
 
 
 class Post {
-    constructor({id, subject, journalInput, gif, date,  comments=[], reactions={"emoji1":0,"emoji2":0,"emoji3":0} }) {
+    constructor({id, subject, journalInput, gif, date,  comments=[], reactions={"heart":0,"cry":0,"laugh":0} }) {
         this.id = id,
         this.subject = subject,
         this.journalInput =journalInput,
@@ -27,6 +27,13 @@ class Post {
         }
     }
 
+    static searchPosts(arg) { 
+        return Post.all.filter(post =>  
+            post.subject.toLowerCase().includes(arg.toLowerCase()) || 
+            post.journalInput.toLowerCase().includes(arg.toLowerCase())
+        )
+    }
+
     static sortPost() {
         const arr = []
         Post.all.forEach( post => { arr[postsData.length-post.id] = post })
@@ -47,9 +54,9 @@ class Post {
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => {
             // Checking for errors 
             if (err) throw err;  
-
             console.log("Done creating post"); // Success 
         })
+        return postsData;
     }
 
     static  addComment(id, comment) {
@@ -73,6 +80,8 @@ class Post {
 
             console.log("Done adding comment"); // Success 
          })
+         console.log(post.reactions[emoji])
+         return {count : post.reactions[emoji]}
     }
 
     static deletePost(id) {
