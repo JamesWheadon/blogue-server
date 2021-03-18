@@ -25,7 +25,7 @@ class Post {
     }
 
     static searchPosts(arg) { 
-        return Post.all.filter(post =>  
+        return Post.all.filter(post => 
             post.subject.toLowerCase().includes(arg.toLowerCase()) || 
             post.journalInput.toLowerCase().includes(arg.toLowerCase())
         )
@@ -56,7 +56,6 @@ class Post {
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
-
             console.log("Done adding comment"); // Success 
          })
     }
@@ -68,7 +67,6 @@ class Post {
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
-
             console.log("Done adding comment"); // Success 
          })
          console.log(post.reactions[emoji])
@@ -77,6 +75,7 @@ class Post {
 
     static deletePost(id) {
         let index = (postsData.findIndex( post => post.id === id))
+        if(index === -1) throw new Error('PostID not found')
         postsData.splice(index,1)
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
@@ -117,6 +116,5 @@ class Post {
     }
 
 }
-
 
 module.exports = Post;
