@@ -19,12 +19,9 @@ class Post {
     }
 
     static findByID(id) {
-        try {
-            const post = postsData.find(post => post.id === id)
-            return post;
-        } catch (error) {
-            throw new Error(`Error: ${error}`)
-        }
+        const post = postsData.find(post => post.id === id)
+        if(!post) throw new Error(`Error: Post not found`);
+        return post;
     }
 
     static searchPosts(arg) { 
@@ -32,12 +29,6 @@ class Post {
             post.subject.toLowerCase().includes(arg.toLowerCase()) || 
             post.journalInput.toLowerCase().includes(arg.toLowerCase())
         )
-    }
-
-    static sortPost() {
-        const arr = []
-        Post.all.forEach( post => { arr[postsData.length-post.id] = post })
-        return arr
     }
 
     static createPost(data) {
