@@ -18,6 +18,11 @@ describe('Post model', () => {
         }).toThrow();
     })
 
+    it('searchPosts returns an empty array', () => {
+        const result = Post.searchPosts("lmnopqrst");
+        expect(result.length).toBe(0);
+    })
+    
     it('sorts posts in ascending ID order when called with comparison = 0', () => {
         const sortedPosts = Post.sortPosts(Post.all, 0);
         expect(sortedPosts[0].id).toBeLessThan(sortedPosts[1].id);
@@ -31,6 +36,11 @@ describe('Post model', () => {
     it('sorts posts in ascending order of reactions and comments when called with comparison = 0', () => {
         const sortedPosts = Post.sortPosts(Post.all, 2);
         expect(sortedPosts[0].comments.length + Object.values(sortedPosts[0].reactions).reduce((a, b) => a + b, 0)).toBeGreaterThan(sortedPosts[1].comments.length + Object.values(sortedPosts[1].reactions).reduce((a, b) => a + b, 0));
+    })
+
+    it('addEmoji with postID returns an object', () => {
+        const result = Post.addEmoji(1,"heart");
+        expect(typeof(result)).toEqual("object");
     })
 
 })

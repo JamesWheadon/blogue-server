@@ -60,7 +60,7 @@ describe('API server', () => {
     it('it responds to delete /1 with status 200', done => {
         request(api)
         .delete('/1')
-        .expect(204, done);
+        .expect(200, done);
     })
 
     it('it responds to patch /1 with status 201', done => {
@@ -73,7 +73,6 @@ describe('API server', () => {
     it('it responds to patch /1/emoji1 with status 201', done => {
         request(api)
         .patch('/1/emoji1')
-        .send(newComment)
         .expect(201, done);
     })
 })

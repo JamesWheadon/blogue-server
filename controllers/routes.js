@@ -3,8 +3,10 @@ const router = express.Router();
 const Post = require('../models/post')
 
 router.get('/', (req, res) => {
-    if(req.query.sort) { res.send(Post.sortPost()) 
-    } else { res.status(200).send(Post.all); }
+    if(req.query.sort) {
+        res.send(Post.sortPosts(Post.all, req.query.sort))
+    }
+    res.status(200).send(Post.all);
 });
 
 router.get('/search', (req, res) => {
@@ -31,7 +33,7 @@ router.patch('/:id/:emoji', (req,res) => {
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
     Post.deletePost(id)
-    res.status(204).send("deleted")
+    res.send("deleted")
 });
 
 module.exports = router;

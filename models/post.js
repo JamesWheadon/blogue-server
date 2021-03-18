@@ -19,9 +19,9 @@ class Post {
     }
 
     static findByID(id) {
-            const post = postsData.find(post => post.id === id)
-            if(!post) throw new Error(`Error: Post not found`);
-            return post; 
+        const post = postsData.find(post => post.id === id)
+        if(!post) throw new Error(`Error: Post not found`);
+        return post;
     }
 
     static searchPosts(arg) { 
@@ -29,12 +29,6 @@ class Post {
             post.subject.toLowerCase().includes(arg.toLowerCase()) || 
             post.journalInput.toLowerCase().includes(arg.toLowerCase())
         )
-    }
-
-    static sortPost() {
-        const arr = []
-        Post.all.forEach( post => { arr[postsData.length-post.id] = post })
-        return arr
     }
 
     static createPost(data) {
@@ -51,20 +45,17 @@ class Post {
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => {
             // Checking for errors 
             if (err) throw err;  
-
-            console.log("Done adding comment"); // Success 
-         })
-         return postsData;
+            console.log("Done creating post"); // Success 
+        })
+        return postsData;
     }
 
     static  addComment(id, comment) {
         const post = this.findByID(id);
         post.comments.push(comment)
-        console.log(postsData)
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
-
             console.log("Done adding comment"); // Success 
          })
     }
@@ -76,7 +67,6 @@ class Post {
         fs.writeFile("./posts.json", JSON.stringify(postsData), err => { 
             // Checking for errors 
             if (err) throw err;  
-
             console.log("Done adding comment"); // Success 
          })
          console.log(post.reactions[emoji])
