@@ -7,7 +7,7 @@ describe('API server', () => {
         comment: "Wow yeah I agree"
     };
     let newPost = {
-        title: "Aldi"
+        subject: "Aldi"
     }
 
     beforeAll(() => {
@@ -23,6 +23,13 @@ describe('API server', () => {
         request(api)
         .get('/')
         .expect(200, done);
+    })
+
+    it('it responds to get /search?search=returnnothingok with status 200', done => {
+        request(api)
+        .get('/search?search=returnnothingok')
+        .expect(200)
+        .expect([] ,done);
     })
 
     it('it responds to get /?sort=0 with status 200', done => {

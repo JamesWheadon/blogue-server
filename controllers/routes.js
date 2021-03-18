@@ -31,8 +31,7 @@ router.patch('/:id/:emoji', (req,res) => {
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
     Post.deletePost(id)
-    res.send("deleted") 
-    
+    res.status(204).send("deleted")
 });
 
 module.exports = router;

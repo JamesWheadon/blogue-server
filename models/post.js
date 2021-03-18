@@ -19,12 +19,9 @@ class Post {
     }
 
     static findByID(id) {
-        try {
             const post = postsData.find(post => post.id === id)
-            return post;
-        } catch (error) {
-            throw new Error(`Error: ${error}`)
-        }
+            if(!post) throw new Error(`Error: Post not found`);
+            return post; 
     }
 
     static searchPosts(arg) { 
