@@ -43,4 +43,10 @@ describe('Post model', () => {
         expect(typeof(result)).toEqual("object");
     })
 
+    it('deletePost returns an error with an invalid ID input', () => {
+        expect(() => {
+            Post.deletePost(100000)
+        }).toThrow();
+    })
+
 })

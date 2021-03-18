@@ -1,5 +1,7 @@
 const request = require("supertest");
 const server = require('../app');
+const Post = require('../models/post')
+
 
 describe('API server', () => {
     let api
@@ -7,11 +9,17 @@ describe('API server', () => {
         comment: "Wow yeah I agree"
     };
     let newPost = {
-        subject: "Aldi"
+        subject: "Aldi",
+        journalInput: "sdf",
+        gif: "sdfdsf",
+        date: "9809"
     }
+
+    let post2delete = Post.all.length -1; 
 
     beforeAll(() => {
         api = server.listen(5000, () => console.log('Test server running on port 5000'))
+        Post.createPost(newPost) // atleast one post needed in json before with postID = 1 before running tests
     })
 
     afterAll(done => {
@@ -57,12 +65,6 @@ describe('API server', () => {
         .expect(201, done);
     })
 
-    it('it responds to delete /1 with status 200', done => {
-        request(api)
-        .delete('/1')
-        .expect(200, done);
-    })
-
     it('it responds to patch /1 with status 201', done => {
         request(api)
         .patch('/1')
@@ -70,9 +72,21 @@ describe('API server', () => {
         .expect(201, done);
     })
 
-    it('it responds to patch /1/emoji1 with status 201', done => {
+    it('it responds to patch /1/heart with status 201', done => {
         request(api)
-        .patch('/1/emoji1')
+        .patch('/1/heart')
         .expect(201, done);
+    })
+
+    it('it responds to delete /2000 with status 200', done => {
+        request(api)
+        .delete('/2000')
+        .expect(500, done);
+    })
+
+    it('it responds to delete /1 with status 200', done => {
+        request(api)
+        .delete(`/1`)
+        .expect(200, done);
     })
 })
