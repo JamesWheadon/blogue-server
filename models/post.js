@@ -47,7 +47,7 @@ class Post {
             if (err) throw err;  
             console.log("Done creating post"); // Success 
         })
-        return postsData;
+        return data;
     }
 
     static  addComment(id, comment) {
