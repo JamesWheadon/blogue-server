@@ -22,10 +22,17 @@ describe('Post model', () => {
         const result = Post.searchPosts("lmnopqrst");
         expect(result.length).toBe(0);
     })
+
+    it('searchPosts returns an array with posts conataining "aldi', () => {
+        const result = Post.searchPosts("aldi");
+        expect(result.length).toBeGreaterThan(0);
+    })
     
     it('sorts posts in ascending ID order when called with comparison = 0', () => {
         const sortedPosts = Post.sortPosts(Post.all, 0);
-        expect(sortedPosts[0].id).toBeLessThan(sortedPosts[1].id);
+        let post1 = sortedPosts[0].id
+        let post2 = sortedPosts[1].id
+        expect(post1).toBeLessThan(post2);
     })
 
     it('sorts posts in descending ID order when called with comparison = 1', () => {
@@ -33,9 +40,9 @@ describe('Post model', () => {
         expect(sortedPosts[0].id).toBeGreaterThan(sortedPosts[1].id);
     })
 
-    it('sorts posts in ascending order of reactions and comments when called with comparison = 0', () => {
+    it('sorts posts in ascending order of reactions and comments when called with comparison = 2', () => {
         const sortedPosts = Post.sortPosts(Post.all, 2);
-        expect(sortedPosts[0].comments.length + Object.values(sortedPosts[0].reactions).reduce((a, b) => a + b, 0)).toBeGreaterThan(sortedPosts[1].comments.length + Object.values(sortedPosts[1].reactions).reduce((a, b) => a + b, 0));
+        expect(sortedPosts[0].comments.length + Object.values(sortedPosts[0].reactions).reduce((a, b) => a + b, 0)).toBeGreaterThanOrEqual(sortedPosts[1].comments.length + Object.values(sortedPosts[1].reactions).reduce((a, b) => a + b, 0));
     })
 
     it('addEmoji with postID returns an object', () => {

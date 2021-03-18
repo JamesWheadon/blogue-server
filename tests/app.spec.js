@@ -1,6 +1,7 @@
+const Post = require('../models/post');
 const request = require("supertest");
 const server = require('../app');
-const Post = require('../models/post')
+
 
 
 describe('API server', () => {
@@ -10,7 +11,7 @@ describe('API server', () => {
     };
     let newPost = {
         subject: "Aldi",
-        journalInput: "sdf",
+        journalInput: "tesco",
         gif: "sdfdsf",
         date: "9809"
     }
@@ -38,6 +39,14 @@ describe('API server', () => {
         .get('/search?search=returnnothingok')
         .expect(200)
         .expect([] ,done);
+    })
+
+    it('it responds to get /search?search=asda with status 200', done => {
+        let result = JSON.stringify(Post.searchPosts("asda"))
+        request(api)
+        .get('/search?search=asda')
+        .expect(200)
+        .expect(result, done);
     })
 
     it('it responds to get /?sort=0 with status 200', done => {
@@ -84,9 +93,15 @@ describe('API server', () => {
         .expect(500, done);
     })
 
-    it('it responds to delete /1 with status 200', done => {
+    it('it responds to delete /9 with status 200', done => {
+        let maxId = 0;
+        Post.all.forEach( post => {
+            if (post.id > maxId)  {
+                maxId = post.id
+            }
+        })
         request(api)
-        .delete(`/1`)
+        .delete(`/${maxId}`)
         .expect(200, done);
     })
 })
