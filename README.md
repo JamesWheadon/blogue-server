@@ -41,7 +41,8 @@ Users can make posts anonymously and receive comments/reactions on these posts.
 
 ### Challenges
 
--   Difficulties with unit testing on complicated functions
+-   Difficulties with testing on complicated functions
+-   Coming across numerous bugs and errors while setting up server 
 
 ## Bugs
 -   No known bugs. The following bugs were encountered during the process and fixed: delete method would delete posts even if postID given did not have a match in the data
