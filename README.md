@@ -42,6 +42,7 @@ Users can make posts anonymously and receive comments/reactions on these posts.
 ### Challenges
 
 -   Difficulties with testing on complicated functions
+-   Connecting server and client side
 -   Coming across numerous bugs and errors while setting up server 
 
 ## Bugs
