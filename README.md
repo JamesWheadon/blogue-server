@@ -21,7 +21,7 @@ Users can make posts anonymously and receive comments/reactions on these posts.
 
 -   Server side: JavaScript
     -   Dependencies include: Express, Body-Parser, Cors
--   Test suite: Jest
+-   Test suite: Jest, supertest
 
 ## Process
 
