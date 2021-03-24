@@ -1,7 +1,10 @@
 # Blogue - server
 
-An anonymous community journalling site built using JavaScript, HTML, and CSS.
-Users can make posts anonymously and receive comments/reactions on these posts.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A anonymous community journalling site built using JavaScript, HTML, and CSS, inspired by the aesthetics of Vogue magazine.
+Users can make posts anonymously, with an optional feature to add a GIF.
+Other users can comment and react on the submitted posts.
 
 ### Installation
 
@@ -34,18 +37,19 @@ Users can make posts anonymously and receive comments/reactions on these posts.
 ### Wins
 
 -   Achieved a minimum viable product. The following functionalities are available to the client: make GET requests to retrieve all posts, make post and patch requests to create posts, and react or comment on other peoples' posts
--   Implemented full CRUD functionalities on server side ( fully functional GET ,POST, PATCH, DELETE methods)
--   Added additional feautures: A Sort posts function which sends back posts in ascending, descending or by ascending order of comments + reactions;
-    A search posts function which returns posts where the subject or journal input includes the search query string. 
+-   Implemented full CRUD functionalities on server side (fully functional GET ,POST, PATCH, DELETE methods)
+-   Added additional feautures: A sort posts function which sends back posts in ascending, descending or by ascending order of comments + reactions;
+-   A search posts function which returns posts where the subject or journal input includes the search query string.
 -   Tested all functions and API Endpoints
 
 ### Challenges
 
 -   Difficulties with testing on complicated functions
 -   Connecting server and client side
--   Coming across numerous bugs and errors while setting up server 
+-   Coming across numerous bugs and errors while setting up server
 
 ## Bugs
+
 -   No known bugs. The following bugs were encountered during the process and fixed: delete method would delete posts even if postID given did not have a match in the data
 
 ## Future Features
@@ -57,4 +61,4 @@ Users can make posts anonymously and receive comments/reactions on these posts.
 
 ## Licence
 
--   ISC
+-   MIT
